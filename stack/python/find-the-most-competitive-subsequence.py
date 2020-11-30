@@ -1,7 +1,7 @@
 class Solution:
     def mostCompetitive(self, nums: List[int], k: int) -> List[int]:
         """using monotonically increasing stack
-
+        LC 1673
         Args:
             nums (List[int]): [description]
             k (int): [description]
