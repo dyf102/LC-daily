@@ -1,3 +1,6 @@
+import heapq
+from operator import itemgetter
+
 class Solution:
     # 632. Smallest Range Covering Elements from K Lists
     def smallestRange(self, nums: List[List[int]]) -> List[int]:
