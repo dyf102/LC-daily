@@ -5,6 +5,7 @@ class Solution:
         """LC 329 Longest Increasing Path in a Matrix
         time complexity: O(M * N)
         space: O(E)
+        difficuty: Hard
         BFS according to topological order
         """
         m = len(matrix)
