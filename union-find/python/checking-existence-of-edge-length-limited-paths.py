@@ -1,17 +1,10 @@
 class Solution:
     def distanceLimitedPathsExist(self, n: int, edgeList: List[List[int]], queries: List[List[int]]) -> List[bool]:
         """LC 1697
-        Runtime: O(E*Log(E) + N*Log(N))
+        Time Complexity: O(E*Log(E) + N*Log(N))
         E: # of edges
         N: # of queries
-        category: union-find
-        Args:
-            n (int): [description]
-            edgeList (List[List[int]]): [description]
-            queries (List[List[int]]): [description]
-
-        Returns:
-            List[bool]: [description]
+        Category: union-find
         """
         edges = sorted([(e[2], e[0], e[1]) for e in edgeList])
         ordered_queries = sorted([(e[2], e[0], e[1], idx) for idx, e in enumerate(queries)])
