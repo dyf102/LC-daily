@@ -1,6 +1,17 @@
 
 class Solution:
     def minCostToSupplyWater(self, n: int, wells, pipes) -> int:
+        """LC 1168 Optimize-water-distribution-in-a-village
+        Kruskal algorithm to find MST 
+        Time complexity: O(E*LOG(E))
+        Args:
+            n (int): [description]
+            wells ([type]): [description]
+            pipes ([type]): [description]
+
+        Returns:
+            int: [description]
+        """
         root = list(range(n + 1))
         def findRoot(idx):
             if root[idx] != idx:
