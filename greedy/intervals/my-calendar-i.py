@@ -6,6 +6,8 @@ class MyCalendar:
         self.delta = []
 
     def book(self, start: int, end: int) -> bool:
+        """Scanning line
+        """
         idx1 = bisect.bisect_left(self.delta, (start, 1))
         self.delta.insert(idx1, (start, 1))
         idx2 = bisect.bisect_left(self.delta, (end, -1))
