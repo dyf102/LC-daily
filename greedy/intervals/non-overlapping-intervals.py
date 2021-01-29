@@ -2,7 +2,7 @@ class Solution:
     def eraseOverlapIntervals(self, intervals: List[List[int]]) -> int:
         """LC 435. Non-overlapping Intervals
         Critical part is it's using end time to sort because 
-        we can discord the one ending earlier.
+        we can discord the one ending earlier.˝
         Args:
             intervals (List[List[int]]): [description]
 
