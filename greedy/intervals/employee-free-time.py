@@ -2,6 +2,10 @@ from typing import List
 
 
 def employeeFreeTime(schedule):
+    """LC 759. Employee Free Time
+    For the case [1,2][2,4] we shouldn't see any gap in between so when we sort the delta
+    we need put start in frant of end. it basicatlly combines two slots together.
+    """
     result = []
     
     delta = []
