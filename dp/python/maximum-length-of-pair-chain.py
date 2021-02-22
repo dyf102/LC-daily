@@ -3,6 +3,8 @@ class Solution:
         """LC 646. Maximum Length of Pair Chain
         Time complexity: O(N^2)
         Space: O(N)
+        it can't be applied binary search because we sort by start time, but 
+        the end times are not necessarily sorted.
         """
         starts, ends = zip(*sorted(pairs))
         n = len(pairs)
