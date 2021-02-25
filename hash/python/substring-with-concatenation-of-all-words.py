@@ -19,7 +19,7 @@ class Solution:
                 current[tmp] += 1
                 count += 1
                 j += m
-                if current[tmp] > counter[tmp]:
+                if current[tmp] > counter[tmp]: # reset
                     break
                 if current == counter:
                     result.append(j - count * m)
