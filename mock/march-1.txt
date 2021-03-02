@@ -1,0 +1,122 @@
+"""
+Given an array of variable pairs "equations"
+equations[i] = [A, B]
+
+values is array double integer
+values[i] = A/B;
+
+Goal: -> An array of array of query pairs.
+
+e.g 
+equations = [['A', 'B'], ['B', 'C']]
+values = [2.0, 3.0]
+A/B = 2.0
+B/C = 3.0
+
+Queries = [['A', 'C']， ['B', 'E']]
+Answer = [6, -1]
+A/C = 6.0
+
+
+
+All input would be valid. You can assume no zero existed.
+
+
+equations = []
+queries = ['a', 'b']
+result = [-1]
+
+equations = [a', 'b']
+values = [2.0]
+queries = ['a', 'b']
+result = []
+
+equations = [a', 'c']
+values = [2.0]
+queries = ['a', 'b']
+result = []
+
+dfs('a', 'b') - > dfs('b', 'b')
+dfs('a', 'c') - > dfs('c', 'b')
+
+equations = [[a', 'b'], [c', 'b']
+values = [2.0, 1.0]
+queries = ['a', 'c']
+result = []
+dfs('a', 'c') - > dfs('a', 'b')
+
+equations = [[a', 'b'], ['a', 'c']]
+values = [2.0, 3.0]
+queries = [['a', 'b'], ['a', 'c']]
+result = []
+
+{'a': [('b', 2.0), ('c', 3.0)]]} 
+{'b': ('a', 0.5),
+('c'): [('a', 1/3)]} 
+
+"""
+
+
+def dfs(graph, src, des, visited):
+  for _next, weight in graph[src]:
+    if _next in visited:
+      continue
+    visited.add(_next)
+    if des != src: 
+      result = dfs(graph, _next, des)
+    if result != -1:
+      return w * result
+    visited.remove(_next)
+  return -1
+
+"""
+{'a': [('b', 2.0)]]} mean a / b = 2.0
+{'b': ('a', 0.5)} mean b / a = 0.5
+"""
+def quationSolver(equations, values, queries):
+  # build graph
+  
+  graph = defaultdict(list)
+  v = set()
+  result = []
+  for idx, equation in enumerate(equations):
+    	graph[equation[0]].append((equation[1], values[idx]))
+  		graph[equation[1]].append((equation[0], 1.0/values[idx]))
+  		v.add(equation[0])
+      v.add(equation[1])
+  
+  for query in queries:
+    src, des = query[0], query[1]
+    if src not in v or des not in v:
+      result.append(-1)
+    else:
+      check = set()
+      check.add(src)
+      val = dfs(src, des, check)
+      result.append(val)
+  
+equations = [['a', 'b'], ['a', 'c']]
+values = [2.0, 3.0]
+queries = [['a', 'b'], ['a', 'c']]
+result = []
+              
+quationSolver()
+
+
+
+
+"""
+follow-up:
+  1. defaultdict and defaultlist
+  dict = deafultdict()
+  dict['A']
+  
+  list = list()
+  list['A']
+    
+"""
+    
+    
+    
+    
+    
