@@ -1,5 +1,7 @@
 class Solution:
     def canWin(self, s: str) -> bool:
+        """LC 294. Flip Game II
+        """
         cache = {}
         n = len(s)
         @lru_cache()
