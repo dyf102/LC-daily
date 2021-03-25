@@ -1,0 +1,73 @@
+# Design a max stack that supports push, pop and peekMax
+
+# push(x) -- Push element x onto stack.
+# pop() -- Remove the element on top of the stack and return it.
+# peekMax() -- Retrieve the maximum element in the stack.
+
+# Example:
+# push(3)
+# push(1)
+# push(2)
+# push(4)
+# stack data: [3,1,2,4]
+# peekMax() -> 4
+# pop() -> 4
+# stack data: [3,1,2]
+# peekMax() -> 3
+
+
+
+class MaxStack():
+    def __init__(self):
+        self.__stack = []
+        self.maximum_stack = []
+    
+    def push(self, value):
+        self.__stack.append(value)
+        if len(self.maximum_stack) == 0 or value >= self.maximum_stack[-1]:
+            self.maximum_stack.append(value)
+        
+    def peakMax(self):
+        if len(self.maximum_stack) == 0:
+            return None
+        return self.maximum_stack[-1]
+    
+    def popMax(self):
+        buffer = []
+        if len(self.__stack) == 0:
+            return None
+        maximum = self.maximum_stack[-1]
+        
+        while len(self.__stack) > 0:
+            if self.__stack[-1] == maximum:
+                self.__stack.pop()
+                break
+            if self.__stack[-1] != maximum:
+                buffer.append(self.__stack[-1])
+            self.__stack.pop()
+        # adding back from buffer
+        while len(buffer) > 0:
+            self.__stack.append(buffer.pop())
+        return self.maximum_stack.pop()
+        
+    
+    def pop(self):
+        if len(self.__stack) == 0:
+            return None
+        val = self.__stack.pop()
+        if val == self.maximum_stack[-1]:
+            self.maximum_stack.pop()
+        return val
+        
+#if __name__ == "__main__":
+maxStack = MaxStack()
+maxStack.push(2)
+maxStack.push(2)
+# assert maxStack.pop() == 2
+assert maxStack.peakMax() == 2
+
+
+    
+    
+        
+        

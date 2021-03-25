@@ -1,0 +1,189 @@
+
+
+1. "A,B,Left", "B,C,Left", "A,C,Left" -> true
+2. "A,B,Left", "B,C,Left", "A,C,Right" -> false
+
+
+  // A B C
+  
+  // A->B
+  // B->A
+  
+  // A->B->C->A
+
+  
+  def hasCycle(sentences):
+    n = len(sentences)
+    if n == 0:
+      return True
+    graph = defaultdict(list)
+    for sentence in sentences:
+      tokens = sentence.split(",")
+      src, des, direction = tokens[0], tokens[1], token[2]
+      
+      if direction == 'Left':
+        graph[des].append(src)
+      else:
+        graph[src].append(des)
+    
+    check = {} 
+    def dfs(start):
+      for neighbor in graph.get(start):
+        if neighbor in check:
+          return False
+        check[neighbor] = True
+        dfs(neighbor)
+        del check[neighbor]
+      return True
+    
+    // A -> B -> C
+    
+    for start in graph.keys():
+      check[start] = True
+      if not dfs(start):
+        return False
+      del check[start]
+    return  True
+      
+    207
+    
+==============================
+1653 
+
+string "a" "b"
+valid: a before b
+
+  aaa|bbb
+  
+  abbbba
+  left[i] 
+
+ababab : 3
+aaabbb : 0
+abbbba : 1
+baaa: 1
+
+bbaaa: 2  
+
+ba 1
+ab 0
+aa 0
+bb 0
+aba
+
+ababab
+00
+ 
+
+
+n cities
+m flights
+parameters:
+src int
+des int
+list[src, des, w]
+k stops
+src to des minimum cost
+
+
+
+n = 3, edges = [[0,1,100],[1,2,100],[0,2,500]]
+m = edges.length;
+src = 0, dst = 2, k = 1
+    
+// 1. build graph
+// Map<Integer, Map<Integer, Integer>> src -> (dec, cost)
+// graph[i][j] = cost
+
+// 2. bfs + pq
+  
+  PQ(int[]) (city, 0, total cost) cost inc order
+  (0,0)
+  
+  source -> node cost
+  s  0
+  n1 +
+  n2 +
+  
+  
+public int minimumCost(int n, int m, int src, int des, int[][] edges, int k) {
+	if (src == des) {
+    	return 0;
+    }
+  	if (edges.length == 0) {
+    	return -1;
+    }
+  	// build 
+	Map<Integer, Map<Integer, Integer>> map = new HashMap<>();
+  	for (int[] edge : edges) {
+    	int fir = edge[0];
+    	int sec = edge[1];
+      	int w = edge[2];
+      	map.putIfAbsent(fir, new HashMap<>());
+      	map.get(fir).put(sec, w);
+    }
+  
+  	// pq int[3] (curr city, stop, total cost) 
+  	PriorityQueue<int[]> pq = new PriorityQueue<int[]>((i1, i2) -> (i1[2] - i2[2]));
+  	pq.add(new int[]{src, 0, 0});
+  	
+  	// cost(next) > cost(src) + cost(src -> next)
+  	int[] dis = new int[n];
+	Arrays.fill(dis, Integer.MAX_VALUE);
+  	dis[src] = 0;
+  
+  	while (!pq.isEmpty()) {
+    	int[] node = pq.poll();
+      	int curr = node[0];
+      	int stop = node[1];
+      	int cost = node[2];
+      	if (curr == des) {
+        	return cost;
+        }
+      	if (stop == k) {
+        	continue;
+        }
+      	Map<Integer, Integer> children = map.get(curr);
+      	if (children == null) {
+        	continue;
+        }
+      	for (int child : children.keySet()) {
+        	int w = children.get(child);
+          	if (dis[child] > cost + w) {
+            	int[] next = new int[]{child, stop + 1, cost + w};
+              	pq.add(next);
+              	
+                dis[child] = cost + w;
+            }
+        }
+    }
+  	return -1;
+  	O(E + VlogV)
+}	
+
+-- 787
+  
+  
+1. Inc(Key) - Inserts a new key with value 1. Or increments an existing key by 1. Key is guaranteed to be a non-empty string.
+2. Dec(Key) - If Key's value is 1, remove it from the data structure. Otherwise decrements an existing key by 1. If the key does not exist, this function does nothing. Key is guaranteed to be a non-empty string.
+3. GetMaxKey() - Returns one of the keys with maximal value. If no element exists, return an empty string "".
+4. GetMinKey() - Returns one of the keys with minimal value. If no element exists, return an empty string "".
+  
+  O(1)
+  
+  String key, int count 
+  "A", 2
+  
+// countMap (string, count)
+  1. new (A, 1)
+  2. freq / node 
+
+// freqMap (count, node)
+  1. new: put before tail
+  2. 
+         Set()  Set(B)
+ head ->  [2] -> [1] -> tail
+
+  
+  
+
