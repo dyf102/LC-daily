@@ -11,3 +11,14 @@ class Solution:
         if right <= x and right * right <= x:
             return right
         return left
+    
+    def mySqrt2(self, x: int) -> int:
+        left = 1
+        right = x + 1
+        while left < right:
+            m = (left + right) // 2
+            if m**2 > x:
+                right = m
+            else:
+                left = m + 1
+        return left - 1
