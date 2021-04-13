@@ -2,6 +2,16 @@ from collections import defaultdict
 
 class Solution:
     def calcEquation(self, equations: List[List[str]], values: List[float], queries: List[List[str]]) -> List[float]:
+        """LC 399. Evaluate Division
+        DFS solution
+        Args:
+            equations (List[List[str]]): [description]
+            values (List[float]): [description]
+            queries (List[List[str]]): [description]
+
+        Returns:
+            List[float]: [description]
+        """
         def dfs(graph, src, des, visited):
             if des == src:
                 return 1
@@ -33,3 +43,8 @@ class Solution:
                 val = dfs(graph, src, des, check)
                 result.append(val)
         return result
+
+    def calcEquation(self, equations: List[List[str]], values: List[float], queries: List[List[str]]) -> List[float]:
+        """Union-find solution
+        """
+        pass
